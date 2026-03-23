@@ -4,7 +4,9 @@ import torch.nn.functional as F
 from dataLoad_t import FluentData
 import numpy as np
 from Auto_Manual_Mixed import AtributeLayer,Propagation,with_adam
+from name_register import getcount
 @with_adam
+@getcount
 class Normallayer(AtributeLayer):
     def __init__(self, units, input_shape,activate,name,usemanual=True,**kw):
         super().__init__()
@@ -30,6 +32,7 @@ class Normallayer(AtributeLayer):
         self.bias = nn.Parameter(torch.zeros(self.units))  # Initialize bias
 
 @with_adam
+@getcount
 class CustconvolutionLayer(AtributeLayer):
     def __init__(self, filters, input_shape,kernel_size,name,usemanual=True,strides=1,padding='same',**kw):
         super().__init__()
