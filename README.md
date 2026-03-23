@@ -1,1 +1,6 @@
 # New-ways-of-MulticategoryProblems
+For conv_LayeradjustAPI, we completed several classes to achieve fabrication of customized back propagation and optimization,which package optimizer,gradient computing and attributes of layers into a class so as to support operations for different layers.In details, they contain:
+* __AdamParameters__: it is used to save first_order moment estimation and second_order moment estimation for layers applied adam opt, when initializing,these estimations will be set to 0.
+* __Adamregistry__:this is a staticclass that dedicates to register or obtain layer object.These adam parameters can be visited through dict which has saved corrosponding layer' adam parameters by using its ids.
+* __with_adam__: this is a decorator decorating layer object(or say,nn.Module),as well as rewrites build method, so that the adam parameters can be registered to layer object by calling Adamregister's register method when creating an instance for layer class.
+* __Propagation__: this is the redical class for parameters'update and gradient calculation,which consists of some methods like: dense_gradient ,MAXpoolgradient.As for the momentumcore method, the base of Adam optimizing is inplemented in it.Training main model for updating model's parameters by computing gradients and loss in every loop is accomplished in runall method.
